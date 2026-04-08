@@ -12,6 +12,11 @@ import {
   Sparkles,
   ArrowRight,
   Zap,
+  Lightbulb,
+  FileText,
+  Calendar,
+  Layers,
+  ChevronRight,
 } from "lucide-react";
 import { copy } from "@/lib/copy";
 
@@ -150,6 +155,151 @@ function SocialProofBar() {
         </p>
       </div>
     </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   TRUSTED BY
+───────────────────────────────────────────── */
+const trustedLogos = ["Acme", "Globex", "Initech", "Umbrella", "Massive"];
+
+function TrustedBy() {
+  return (
+    <div className="bg-white border-b border-zinc-100 py-10 px-4 sm:px-6 lg:px-8">
+      <div className="container-max">
+        <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-7">
+          Trusted by solopreneurs at
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+          {trustedLogos.map((name) => (
+            <span
+              key={name}
+              className="text-base font-bold text-zinc-300 tracking-tight hover:text-zinc-400 transition-colors duration-200 select-none"
+            >
+              {name}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   PRODUCT WALKTHROUGH
+───────────────────────────────────────────── */
+const walkthroughSteps = [
+  {
+    number: "01",
+    icon: Lightbulb,
+    label: "Strategy",
+    headline: "Tell us your goals",
+    body: "We build your content calendar around your business objectives — not generic viral tricks. Traffic, leads, credibility. You pick, we plan.",
+    detail: "Goal setting wizard → Custom content pillars → Platform selection",
+  },
+  {
+    number: "02",
+    icon: FileText,
+    label: "Content",
+    headline: "AI creates everything",
+    body: "Write one long-form piece — a newsletter, a case study, a framework — and watch it transform into a full month's worth of platform-native posts.",
+    detail: "Long-form input → Platform-adapted drafts → Brand voice tuning",
+  },
+  {
+    number: "03",
+    icon: Calendar,
+    label: "Schedule",
+    headline: "You approve. We post.",
+    body: "Your weekly queue lands in your inbox every Monday. Review, tweak, or swap in under 5 minutes. Approve and it's live across all platforms.",
+    detail: "Queue preview → One-click approve → Auto-published",
+  },
+];
+
+function ProductWalkthrough() {
+  return (
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-zinc-50 overflow-hidden">
+      <div className="container-max">
+        <AnimatedSection className="text-center mb-16">
+          <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-3">
+            See it in action
+          </p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">
+            Strategy → Content → Schedule
+          </h2>
+          <p className="text-muted-foreground mt-4 max-w-lg mx-auto text-sm sm:text-base">
+            Your entire social media workflow, automated in three steps.
+          </p>
+        </AnimatedSection>
+
+        {/* Steps row */}
+        <div className="relative">
+          {/* Horizontal connector line */}
+          <div className="hidden md:block absolute top-14 left-0 right-0 h-px bg-zinc-200 z-0" />
+
+          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
+            {walkthroughSteps.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <div key={step.number} className="animate-step">
+                  {/* Step card */}
+                  <div className="relative z-10 bg-white border border-zinc-200 rounded-2xl p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-zinc-300 transition-all duration-300">
+                    {/* Step number + icon row */}
+                    <div className="flex items-center justify-between mb-5">
+                      <span className="text-xs font-bold text-accent bg-accent/10 px-2.5 py-1 rounded-full">
+                        {step.number}
+                      </span>
+                      <div className="w-11 h-11 rounded-xl bg-foreground flex items-center justify-center">
+                        <Icon className="w-5 h-5 text-white" />
+                      </div>
+                    </div>
+
+                    {/* Label badge */}
+                    <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground bg-zinc-100 px-2.5 py-1 rounded-full mb-4">
+                      <Layers className="w-3 h-3" />
+                      {step.label}
+                    </div>
+
+                    <h3 className="text-xl font-bold text-foreground mb-2.5">
+                      {step.headline}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                      {step.body}
+                    </p>
+
+                    {/* Detail row */}
+                    <div className="border-t border-zinc-100 pt-4">
+                      <p className="text-xs text-zinc-400 leading-relaxed flex items-start gap-1.5">
+                        <ChevronRight className="w-3 h-3 mt-0.5 flex-shrink-0" />
+                        {step.detail}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Demo CTA strip */}
+        <AnimatedSection delay={500} className="mt-12 text-center">
+          <div className="inline-flex items-center gap-3 bg-white border border-zinc-200 rounded-2xl px-6 py-4 shadow-sm">
+            <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-accent" />
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Ready to see it work for your brand?{" "}
+              <a
+                href="#waitlist"
+                className="font-semibold text-foreground hover:text-accent transition-colors duration-200"
+              >
+                Join the waitlist
+              </a>{" "}
+              — free forever on launch.
+            </p>
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
   );
 }
 
@@ -631,6 +781,8 @@ export default function HomePage() {
       <Nav />
       <Hero />
       <SocialProofBar />
+      <TrustedBy />
+      <ProductWalkthrough />
       <HowItWorks />
       <Features />
       <Testimonials />
